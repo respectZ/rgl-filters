@@ -14,7 +14,11 @@ const { entryPoint, outfile, minify } = z
     await esbuild.build({
       bundle: true,
       entryPoints: [entryPoint],
-      external: ["@minecraft/server", "@minecraft/server-ui"],
+      external: [
+        "@minecraft/server",
+        "@minecraft/server-ui",
+        "@minecraft/server-gametest",
+      ],
       format: "esm",
       outfile,
       minify,
