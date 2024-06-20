@@ -1,0 +1,10 @@
+{
+  "filters": [
+    {
+      "name": "Smooth to Linear",
+      "runWith": "go",
+      "script": "./main.go"
+    }
+  ],
+  "version": "0.0.1"
+}
