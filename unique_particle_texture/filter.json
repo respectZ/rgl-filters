@@ -1,0 +1,10 @@
+{
+  "filters": [
+    {
+      "name": "Unique Particle Texture",
+      "runWith": "deno",
+      "script": "./main.ts"
+    }
+  ],
+  "version": "0.0.1"
+}
