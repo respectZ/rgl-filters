@@ -6,13 +6,16 @@ const config = JSON.parse(process.argv[2] ?? "{}");
 
 async function parcel() {
   try {
-    const entryPoint = config.entryPoint ?? "./data/scripts/main.ts";
+    const entryPoints = config.entryPoints ?? ["./data/scripts/main.ts"];
     const outfile = config.outfile ?? `./BP/scripts/main.js`;
     const outDir = path.dirname(outfile);
 
     const { bundleGraph } = await new Parcel({
-      entries: [entryPoint],
-      config: "./.parcelrc",
+      entries: entryPoints,
+      config: path.join(
+        process.env.FILTER_DIR.replace(/\\/g, "/"),
+        ".parcelrc"
+      ),
       mode: "production",
       defaultTargetOptions: {
         distDir: outDir,
@@ -32,6 +35,7 @@ async function parcel() {
     console.log(
       "If you're using Bun runtime, change your runtime to Node.js instead."
     );
+    console.log("Make sure you're cleared out main in the package.json file.");
   }
 }
 

@@ -1,9 +1,13 @@
 import { Resolver } from "@parcel/plugin";
 import path from "path/posix";
 
-const externals = ["@minecraft/server", "@minecraft/server-ui"];
+const externals = [
+  "@minecraft/server",
+  "@minecraft/server-ui",
+  "@minecraft/server-gametest",
+];
 export default new Resolver({
-  async resolve({ specifier}) {
+  async resolve({ specifier }) {
     if (externals.includes(specifier)) {
       return {
         isExcluded: true,
@@ -16,7 +20,7 @@ export default new Resolver({
           "node_modules",
           "@minecraft/vanilla-data",
           "lib",
-          "index.js",
+          "index.js"
         ),
       };
     }
