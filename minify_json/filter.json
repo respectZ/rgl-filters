@@ -1,0 +1,10 @@
+{
+  "filters": [
+    {
+      "name": "Minify JSON",
+      "runWith": "deno",
+      "script": "./index.ts"
+    }
+  ],
+  "version": "1.0.0"
+}
