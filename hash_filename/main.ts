@@ -35,12 +35,15 @@ const promises = globs.map(async (glob) => {
   for (const file of files) {
     const parsed = path.parse(file);
 
-    const trimSize = glob.includes("RP/models/entity/") ? 5 : 4;
-    const root = parsed.dir
-      .split("/")
-      .slice(0, trimSize - 1)
-      .join("/");
-    dirs.add(parsed.dir.split("/").slice(0, trimSize).join("/"));
+    const trimSize = glob.includes("RP/models/entity/") ? 4 : 3;
+    const dir = parsed.dir.split("/");
+    const root = dir.slice(0, trimSize).join("/");
+    if (dir.length > trimSize) {
+      const subdir = dir.slice(trimSize)[0];
+      if (subdir) {
+        dirs.add(path.join(root, subdir));
+      }
+    }
     const filepath = path.join(root, `${simpleHash(file)}.json`);
     await Deno.copyFile(file, filepath);
     await Deno.remove(file);
