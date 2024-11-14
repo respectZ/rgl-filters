@@ -16,11 +16,15 @@ const dirs = ["./BP/**/*.json", "./RP/**/*.json"];
 const entries = await fg(dirs);
 await Promise.all(
   entries.map(async (entry) => {
-    const json = await loadJson(entry);
-    const minified = stringify(json);
-    if (!minified) {
-      throw new Error(`Failed to minify ${entry}`);
+    try {
+      const json = await loadJson(entry);
+      const minified = stringify(json);
+      if (!minified) {
+        return console.error(`Failed to minify ${entry}`);
+      }
+      await Deno.writeTextFile(entry, minified);
+    } catch (error) {
+      return console.error(`Failed to minify ${entry}: ${error}`);
     }
-    await Deno.writeTextFile(entry, minified);
   })
 );
