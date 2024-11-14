@@ -3,6 +3,7 @@
   "devDependencies": {
     "@parcel/config-default": "^2.12.0",
     "@parcel/core": "^2.12.0",
-    "@parcel/plugin": "^2.12.0"
+    "@parcel/plugin": "^2.12.0",
+    "parcel-resolver-ts-base-url": "^1.3.1"
   }
 }
