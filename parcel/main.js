@@ -11,6 +11,11 @@ async function parcel() {
     const outDir = path.dirname(outfile);
 
     const { bundleGraph } = await new Parcel({
+      cacheDir: path.join(
+        process.env.ROOT_DIR.replace(/\\/g, "/"),
+        ".regolith",
+        ".parcel-cache"
+      ),
       entries: entryPoints,
       config: path.join(
         process.env.FILTER_DIR.replace(/\\/g, "/"),
