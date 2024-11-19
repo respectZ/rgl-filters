@@ -1,0 +1,10 @@
+{
+  "filters": [
+    {
+      "name": "Lang Runner",
+      "runWith": "deno",
+      "script": "./index.ts"
+    }
+  ],
+  "version": "1.0.0"
+}
