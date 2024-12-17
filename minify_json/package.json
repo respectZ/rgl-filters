@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "fast-glob": "^3.2.0",
+    "lossless-json": "^4.0.2"
+  }
+}
