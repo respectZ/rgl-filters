@@ -22,6 +22,7 @@ const globs = [
   "./RP/animation_controllers/**/*.json",
   "./RP/attachables/**/*.json",
   "./RP/entity/**/*.json",
+  "./RP/models/blocks/**/*.json",
   "./RP/models/entity/**/*.json",
   "./RP/particles/**/*.json",
   "./RP/render_controllers/**/*.json",
