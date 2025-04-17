@@ -36,7 +36,7 @@ const promises = globs.map(async (glob) => {
   for (const file of files) {
     const parsed = path.parse(file);
 
-    const trimSize = glob.includes("RP/models/entity/") ? 4 : 3;
+    const trimSize = glob.includes("RP/models/") ? 4 : 3;
     const dir = parsed.dir.split("/");
     const root = dir.slice(0, trimSize).join("/");
     if (dir.length > trimSize) {
