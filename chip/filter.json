@@ -1,0 +1,10 @@
+{
+	"filters": [
+		{
+			"name": "chip",
+			"runWith": "bun",
+			"script": "./index.ts"
+		}
+	],
+	"version": "0.0.1"
+}
