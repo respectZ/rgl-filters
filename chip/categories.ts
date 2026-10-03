@@ -15,6 +15,7 @@ export enum Category {
 	RenderControllers = "renderControllers",
 	BlockCulling = "blockCulling",
 	ComponentGroups = "componentGroups",
+	Water = "water",
 }
 
 export const categoryList = Object.freeze(Object.values(Category));

@@ -3,6 +3,7 @@ import { animationControllers } from "./animation_controllers";
 import { animations } from "./animations";
 import { attachables } from "./attachables";
 import { audioFiles } from "./audio_paths";
+import { clientBiome } from "./biome";
 import { blockCulling } from "./block_culling";
 import { blocks } from "./blocks";
 import { entity } from "./entity";
@@ -14,6 +15,7 @@ import { renderControllers } from "./render_controllers";
 import { soundDefinitions } from "./sound_definitions";
 import { itemTexture, terrainTexture } from "./texture_atlas";
 import { textures, textureSets } from "./textures";
+import { water } from "./water";
 
 export const RPEntries: Entry[] = [
 	textures,
@@ -35,4 +37,7 @@ export const RPEntries: Entry[] = [
 	itemTexture,
 	terrainTexture,
 	flipbookTexture,
+
+	water,
+	clientBiome,
 ];
