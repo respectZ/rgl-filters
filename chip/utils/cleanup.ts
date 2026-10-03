@@ -54,12 +54,40 @@ export class DirectoryCleanup {
 	}
 
 	async run(): Promise<void> {
+		if (this.candidates.size === 0) {
+			return;
+		}
+		const packRoots = new Map<string, string>();
+		for (const pack of ["BP", "RP"]) {
+			const packPath = path.join(this.workspace, pack);
+			const stat = await fs.lstat(packPath).catch(ignoreMissing);
+			if (stat?.isSymbolicLink()) {
+				const target = await fs.realpath(packPath).catch(ignoreMissing);
+				if (target) {
+					packRoots.set(packPath, target);
+				}
+			}
+		}
 		const directories = [...this.candidates].sort(
 			([left], [right]) => right.split(path.sep).length - left.split(path.sep).length,
 		);
-		for (const [directory, root] of directories) {
+		for (const [sourceDirectory, sourceRoot] of directories) {
+			if (!isInside(sourceRoot, this.workspace) || !isInside(sourceDirectory, sourceRoot)) {
+				continue;
+			}
+			let directory = sourceDirectory;
+			let root = sourceRoot;
+			let boundary = this.workspace;
+			for (const [packPath, target] of packRoots) {
+				if (isInside(sourceRoot, packPath)) {
+					directory = path.join(target, path.relative(packPath, sourceDirectory));
+					root = path.join(target, path.relative(packPath, sourceRoot));
+					boundary = target;
+					break;
+				}
+			}
 			if (
-				!isInside(root, this.workspace) ||
+				!isInside(root, boundary) ||
 				!isInside(directory, root) ||
 				!(await isRealDirectory(directory))
 			) {
